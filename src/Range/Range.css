@@ -1,0 +1,102 @@
+.range-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    height: 30px;
+    padding: 0 10px;
+    margin: 0 auto;
+    border-radius: 100px;
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    left: 0;
+    background-color: white;
+    z-index: 1000; /* добавляем z-index */
+}
+
+.range-slider {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 7.5px; /* Half of the height to make it round */
+    background: #787878; /* Grey background */
+    outline: none;
+    opacity: 1;
+    transition:  0.2s;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 23px; /* Width of the thumb */
+    height: 23px; /* Height of the thumb */
+    border-radius: 50%; /* Make it round */
+    background: black; /* Green color for the thumb */
+    cursor: pointer;
+  }
+
+  .slider::-moz-range-thumb {
+    width: 23px; /* Width of the thumb */
+    height: 23px; /* Height of the thumb */
+    border-radius: 50%; /* Make it round */
+    background: black; /* Green color for the thumb */
+    cursor: pointer;
+  }
+
+  .slider-value {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .date-indicators {
+    position: absolute;
+    bottom: -55px; /* Adjust as needed */
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date-label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 16px; /* Adjust as needed */
+}
+
+.line-indicators {
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.line-label {
+    position: relative;
+}
+
+.line-label::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 20px; /* Adjust line height as needed */
+    background-color: black; /* Adjust line color as needed */
+}

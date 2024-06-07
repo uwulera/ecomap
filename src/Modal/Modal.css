@@ -1,0 +1,195 @@
+:root {
+    --header-height: 60px;
+    --general-padding: 0.5rem;
+    --border-radius: 5px;
+    --text-color-1: #222;
+    --text-color-2: #666;
+    --text-color-3: #999;
+    --history-height: 20px;
+    --history-left: calc(var(--general-padding) + 180px);
+    --history-width: 70vw;
+  }
+
+  #legend_help{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Ensure it appears on top of other elements */
+  }
+
+  #legend_help p{
+    padding-bottom: 16px;
+  }
+
+  .legend_help {
+    top: calc(var(--header-height) + var(--general-padding));
+    width: 75vw;
+    padding: var(--general-padding);
+    border-radius: var(--general-padding);
+    box-shadow: 0 0 10px 3px hsla(0, 0%, 39.2%, 0.2);
+    color: #000;
+    font-family: Nunito, sans-serif !important;
+  }
+  .legend_help {
+    background-repeat: no-repeat;
+    background-size: 150px;
+    background-position-x: 50%;
+    background-position-y: 20px;
+  }
+  .legend_help #legend-content {
+    min-height: 180px;
+  }
+  
+  .legend_help h3,
+  .legend_help h4 {
+    color: var(--text-color-2);
+  }
+  .legend_help h4 {
+    padding: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+  }
+  
+  .legend_help p {
+    color: #000;
+  }
+  .legend_help {
+    padding: 1rem;
+  }
+  
+  
+  .panel {
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 4001;
+    background-color: #fff;
+    height: 100%;
+    width: 100%;
+    min-width: 320px;
+    min-height: 400px;
+    display: none;
+    top: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  #sensor-panel .close,
+  .panel .close {
+    font-weight: 700;
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    font-size: 16pt;
+    color: #999;
+    padding: 4px 8px 8px 12px;
+    cursor: pointer;
+  }
+  .panel .legend_help__content h3 {
+    color: #666;
+    font-size: 1.2rem;
+    margin: 0;
+    -webkit-margin-before: 1em;
+    margin-block-start: 1em;
+    -webkit-margin-after: 1em;
+    margin-block-end: 1em;
+    -webkit-margin-start: 0;
+    margin-inline-start: 0;
+    -webkit-margin-end: 0;
+    margin-inline-end: 0;
+    font-weight: 700;
+  }
+  .panel .legend_help__content p {
+    color: #666;
+    font-size: 0.8rem;
+  }
+  .white,
+  .white p {
+    color: #fff !important;
+  }
+  .buttonGroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0;
+  }
+  .buttonGroup button {
+    border-color: #999;
+    background-color: #999;
+    color: #fff;
+    outline: none;
+    border: none;
+    padding: 7px 25px;
+    cursor: pointer;
+  }
+
+  .buttonGroup button:focus {
+    outline: 0;
+  }
+
+  table.adaptive {
+    border-collapse: separate;
+    border-spacing: 1px;
+  }
+  table.adaptive td {
+    text-align: center;
+    padding: 0.1rem 0.5rem;
+  }
+  table.adaptive td:last-child {
+    text-align: left;
+  }
+  
+  @media (orientation: landscape) {
+      .legend_help {
+      --panel-height: 75vh;
+      width: 75%;
+      left: 10%;
+      top: calc(50vh - var(--panel-height) / 2);
+      height: var(--panel-height);
+    }
+    .mobile,
+    tr.mobile {
+      display: none;
+    }
+    td.desktop {
+      display: table-cell;
+    }
+    div.desktop {
+      display: block;
+    }
+  }
+  @media (orientation: portrait) {
+    :root {
+      --history-height: 20px;
+      --history-left: var(--general-padding);
+      --history-width: calc(80vw - var(--general-padding));
+    }
+    .legend_help {
+      width: 100vw;
+      top: var(--header-height);
+      left: 0;
+      bottom: 0;
+      height: calc(100vh - var(--header-height));
+      max-height: calc(100vh - var(--header-height));
+    }
+    #help .close,
+    .legend_help .close {
+      right: var(--general-padding);
+      top: calc(var(--general-padding) / 2);
+      line-height: 1rem;
+    }
+    tr.mobile {
+      display: table-row;
+    }
+    div.desktop,
+    td.desktop {
+      display: none;
+    }
+  }
+  

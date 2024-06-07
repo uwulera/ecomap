@@ -1,0 +1,60 @@
+.btn {
+    background-color: #2F5339;
+    color: #fff;
+    width: 100%;
+    line-height: 40px;
+    border-radius: 5px;
+}
+
+.sensor_body__header img{
+    width: 100%;
+}
+
+.sensor_body__header h1 {
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 44px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.sensor-form__container {
+    display: flex;
+    max-width: 1440px;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.sensor-form {
+    width: 500px;
+}
+
+.sensor-form input {
+    border: 1px solid #888888;
+    border-radius: 5px;
+    line-height: 40px;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-left: 16px;
+    font-size: 18px;
+}
+
+.sensor-coordinates {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sensor-page_desc {
+    flex-basis: 50%;
+}
+
+.sensor-page_desc p {
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: 500;
+}
+
+.sensor-page_desc p:first-child {
+    margin-bottom: 37px;
+}
