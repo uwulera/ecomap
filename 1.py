@@ -36,4 +36,4 @@ def load_data_from_json(file_path):
 
 
 if __name__ == "__main__":
-    load_data_from_json('geojson_data.json')  # замените 'path_to_your_file.json' на путь к вашему JSON файлу
+    load_data_from_json('is1.json')  # замените 'path_to_your_file.json' на путь к вашему JSON файлу
