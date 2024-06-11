@@ -1,4 +1,3 @@
-// map.js
 import React, { useEffect, useRef, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -8,12 +7,14 @@ import Range from '../Range/Range';
 import Modal from '../Modal/Modal';
 
 export default function Map() {
-    const [geoJsonData, setGeoJsonData] = useState(null);
+    const [geoJsonData, setGeoJsonData] = useState([]);
     const [sensors, setSensors] = useState([]);
+    const [displayedData, setDisplayedData] = useState(null);
     const [windSpeed, setWindSpeed] = useState(10);
     const [rotation, setRotation] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const [activeButton, setActiveButton] = useState('PM2,5');
+    const [selectedRange, setSelectedRange] = useState(0); // состояние для временного диапазона
     const mapContainerRef = useRef(null);
     const mapRef = useRef(null);
 
@@ -37,6 +38,10 @@ export default function Map() {
         setWindSpeed(newWindSpeed);
     };
 
+    const updateRange = (newRange) => {
+        setSelectedRange(newRange);
+    };
+
     useEffect(() => {
         const fetchPollutionData = async () => {
             try {
@@ -46,6 +51,7 @@ export default function Map() {
                 const features = response.data.map(item => ({
                     type: "Feature",
                     properties: {
+                        id:item.id,
                         concentration: item.concentration,
                         label: item.label,
                     },
@@ -54,13 +60,33 @@ export default function Map() {
                         coordinates: item.coordinates,
                     }
                 }));
+                features.sort((a, b) => a.properties.id - b.properties.id);
 
-                features.sort((a, b) => a.properties.concentration - b.properties.concentration);
+                console.log(features)
 
-                setGeoJsonData({
-                    type: "FeatureCollection",
-                    features: features,
-                });
+                const chunks = [];
+                // chunks.push(features.slice(0, 44));
+                const combinedSlice = features.slice(139, 158).concat(features.slice(44, 62));
+                chunks.push(combinedSlice); //1
+                const combinedSlice1 = features.slice(30, 44).concat(features.slice(0, 44));
+                chunks.push(combinedSlice1); //2
+                // chunks.push(features.slice(30, 44));
+                const combinedSlice2 = features.slice(44, 62).concat(features.slice(95, 139));
+                chunks.push(combinedSlice2);
+                // chunks.push(features.slice(44, 62)); //3
+                chunks.push(features.slice(30, 62)); //4
+                // chunks.push(features.slice(30, 44)); //5
+                const combinedSlice3 = features.slice(44,62).concat(features.slice(139, 158));
+                chunks.push(combinedSlice3);
+                chunks.push(features.slice(0, 30)); //6
+                chunks.push(features.slice(95, 139)); //7
+                chunks.push(combinedSlice2);
+                // chunks.push(features.slice(139, 158)); //8
+                // chunks.push(features.slice(30, 44));
+                chunks.push(features.slice(30, 62));
+
+                setGeoJsonData(chunks);
+                setDisplayedData(chunks[selectedRange] || []);
             } catch (error) {
                 console.error('Error fetching pollution data:', error);
             }
@@ -81,6 +107,10 @@ export default function Map() {
     }, []);
 
     useEffect(() => {
+        setDisplayedData(geoJsonData[selectedRange] || []);
+    }, [selectedRange, geoJsonData]);
+
+    useEffect(() => {
         if (mapContainerRef.current) {
             if (mapRef.current) {
                 mapRef.current.remove();
@@ -97,8 +127,8 @@ export default function Map() {
                 maxZoom: 19,
             }).addTo(map);
 
-            if (geoJsonData) {
-                const rawData = JSON.parse(JSON.stringify(geoJsonData));
+            if (displayedData) {
+                const rawData = JSON.parse(JSON.stringify({ type: "FeatureCollection", features: displayedData }));
                 console.log('Adding data to map:', rawData);
 
                 L.geoJSON(rawData, {
@@ -131,7 +161,7 @@ export default function Map() {
                 marker.bindPopup(`<b>${sensor.name}</b><br>Долгота: ${sensor.longitude}<br>Широта: ${sensor.latitude}`);
             });
         }
-    }, [geoJsonData, sensors]);
+    }, [displayedData, sensors]);
 
     const getColor = (d) => {
         return d > 350 ? '#FF0000' :
@@ -184,7 +214,7 @@ export default function Map() {
             </div>
             {isOpen && <Modal closeModal={closeModal} />}
             <div ref={mapContainerRef} className="map-container"></div>
-            <Range changeData={changeData} />
+            <Range changeData={changeData} updateRange={updateRange} maxRange={geoJsonData.length - 1} /> {/* передаем maxRange */}
         </div>
     );
 }
