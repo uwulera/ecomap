@@ -1,0 +1,57 @@
+.bg_F5F5F5{
+    background: #F5F5F5;
+    padding: 1.3rem 0px 3rem 0px;
+}
+.img_project{
+    display: flex;
+    gap:2.6rem;
+    justify-content: space-between;
+    padding-bottom: 3.75rem;
+}
+.project_img_1{
+    width: 31.25rem;
+    height: 22.2rem;
+    
+    
+}
+.p1_2_project{
+    font-size:1.1rem;
+    margin-top: 0.9rem;
+}
+.p_project{
+    font-size: 1.1rem;
+    margin-top: 1.25rem ;
+}
+.h2_project{
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+.h1_project{
+    font-size: 5.3rem;
+    font-weight:400;
+}
+.box_2_div_project{
+    display: flex;
+    gap:2.06rem;
+}
+.project_img_2{
+    width:31.25rem;
+    height:41.8rem;
+    border-radius: 1.8rem;
+}
+.h2_2_project{
+    font-size:2.2rem;
+    font-weight: 400;
+    
+}
+.h3_project_1{
+    font-size: 1.25rem;
+    margin:1rem 0px 0.6rem 0rem;
+}
+.p_3_project{
+    font-size:1rem;
+}
+.h3_project_2{
+    font-size: 1.25rem; 
+    margin:1.8rem 0px 0.6rem 0rem;
+}

@@ -1,0 +1,53 @@
+.container {
+    width: 100%;
+    margin: auto;
+    padding: 0 2em;
+}
+
+.box_div-header {
+    padding: 1rem 0px 1rem 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo_text {
+    font-size: 1rem;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+
+.div_img_logo {
+    display: flex;
+    align-items: end;
+
+}
+
+.logo_img {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.burger-list {
+    display: flex;
+    list-style: none;
+    gap: 4.4rem;
+    font-size: 1rem;
+}
+
+.burger-link {
+    text-decoration: none;
+    color: black;
+
+}
+
+.contact_us {
+    width: 11rem;
+    height: 2.2rem;
+    background-color: black;
+    color: white;
+    border-radius:1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
